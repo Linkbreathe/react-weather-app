@@ -1,8 +1,10 @@
 import Search from './components/search/search';
 import CurrentWeather from './components/current-weather/current-weather';
+import Forecast from './components/forecast/forecast';
 import {CURRENT_WEATHER_API_URL,WEATHER_API_KEY} from './api'
-import './App.css';
 import { useState } from 'react';
+
+import './App.css';
 
 function App() {
   
@@ -25,10 +27,19 @@ function App() {
     .catch(err => console.log(err))
   }
 
+  console.log("hello")
+
   return (
     <div className="contanier">
       <Search onSearchChange={handleOnSearchChange} />
-      <CurrentWeather data={currentWeather}/>
+      
+      {/* 
+        // Conditional rendering, when currentWeather exists, render the CurrentWeather component
+      */}
+      {currentWeather && <CurrentWeather data={currentWeather} />}
+      {forecastWeather && <Forecast data={forecastWeather} />}
+
+
     </div>
   );
 }
